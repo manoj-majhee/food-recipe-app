@@ -36,7 +36,7 @@ function Register() {
         </div>
         <div
           style={{
-            backgroundColor: "white",
+            backgroundColor: "blue",
             width: "100%",
             display: "flex",
             flexDirection: "column",
