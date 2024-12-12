@@ -6,49 +6,36 @@ import { useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import Login from "./Login";
 
-function Register() {
-  const [name, setName] = useState("");
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
-  const submitHandler = (event) => {
+  const onsubmitHandler = (event) => {
     event.preventDefault();
-    console.log(name);
-    console.log(email);
-    console.log(password);
-    setName("");
-    setEmail("");
-    setPassword("");
-  };
-
-  const onnamechangeHandler = (event) => {
-    setName(event.target.value);
   };
 
   const onemailchangeHandler = (event) => {
     setEmail(event.target.value);
   };
+
   const onpasswordchangeHandler = (event) => {
     setPassword(event.target.value);
   };
 
-  const registerHandler = async () => {
+  const loginHandler = async () => {
     const { data } = await axios.post(
-      "https://nodejs-auth-black.vercel.app/api/auth/register",
-      { username: name, email, password }
+      "https://nodejs-auth-black.vercel.app/api/auth/login",
+      { email, password }
     );
-    // console.log(data);
+    console.log();
     toast.success(data.message);
-    setName("");
     setEmail("");
     setPassword("");
-    navigate("/");
+    navigate("/home");
   };
-
   return (
     <form
       style={{
@@ -58,7 +45,7 @@ function Register() {
         justifyContent: "center",
         alignItems: "center",
       }}
-      onSubmit={submitHandler}
+      onSubmit={onsubmitHandler}
     >
       <div
         style={{
@@ -91,18 +78,7 @@ function Register() {
             gap: "20px",
           }}
         >
-          <h2>Registration Form</h2>
-
-          <div style={{}}>
-            <TextField
-              id="outlined-disabled"
-              label="Full Name"
-              placeholder="Enter your name"
-              style={{ width: "250px" }}
-              value={name}
-              onChange={onnamechangeHandler}
-            />
-          </div>
+          <h2>Login Here</h2>
 
           <div>
             <TextField
@@ -125,23 +101,18 @@ function Register() {
               onChange={onpasswordchangeHandler}
             />
           </div>
-          <p>
-            Already a member?{" "}
-            <Link to="/" style={{ color: "blue" }}>
-              Login
-            </Link>
-          </p>
+
           <Button
             variant="contained"
             disableElevation
             style={{ width: "150px" }}
-            onClick={registerHandler}
+            onClick={loginHandler}
           >
-            Sign Up
+            Login
           </Button>
         </div>
       </div>
     </form>
   );
 }
-export default Register;
+export default Login;
