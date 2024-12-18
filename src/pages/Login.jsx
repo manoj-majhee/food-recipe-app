@@ -101,7 +101,12 @@ function Login() {
               onChange={onpasswordchangeHandler}
             />
           </div>
-
+          <p>
+            Don't have Account{" "}
+            <Link to="/register" style={{ color: "blue" }}>
+              Sign Up
+            </Link>
+          </p>
           <Button
             variant="contained"
             disableElevation

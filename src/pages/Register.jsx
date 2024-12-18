@@ -37,16 +37,23 @@ function Register() {
   };
 
   const registerHandler = async () => {
-    const { data } = await axios.post(
-      "https://nodejs-auth-black.vercel.app/api/auth/register",
-      { username: name, email, password }
-    );
+    try {
+      const { data } = await axios.post(
+        "https://nodejs-auth-black.vercel.app/api/auth/register",
+        { username: name, email, password }
+      );
+      toast.success(data.message);
+      setName("");
+      setEmail("");
+      setPassword("");
+      navigate("/");
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response.data.message);
+      }
+    }
+
     // console.log(data);
-    toast.success(data.message);
-    setName("");
-    setEmail("");
-    setPassword("");
-    navigate("/");
   };
 
   return (
