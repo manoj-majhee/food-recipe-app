@@ -41,7 +41,12 @@ function Home() {
         }}
       >
         {recipes?.map((element) => (
-          <Card name={element.name} image={element.image} key={element.id} />
+          <Card
+            name={element.name}
+            image={element.image}
+            key={element.id}
+            id={element.id}
+          />
         ))}
       </div>
     </div>

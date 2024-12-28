@@ -1,10 +1,12 @@
 import React from "react";
 import Chocolate from "../assets/images/chocolate.jpg";
 import { Directions } from "@mui/icons-material";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Card(props) {
   return (
-    <div
+    <Link
       style={{
         border: "2px solid #a4b0be",
         borderRadius: "12px",
@@ -15,6 +17,7 @@ function Card(props) {
         flexDirection: "column",
         overflow: "hidden",
       }}
+      to={`/recipes/${props.id}`}
     >
       <img
         src={props.image}
@@ -29,7 +32,7 @@ function Card(props) {
           magni alias! Modi laborum nemo minus enim rerum voluptatem incidunt,
         </p> */}
       </div>
-    </div>
+    </Link>
   );
 }
 export default Card;
